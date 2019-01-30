@@ -13,7 +13,7 @@ export default class CurrentMembers extends React.Component {
   }
 
   componentDidMount() {
-    const web3 = new Web3('wss://ropsten.infura.io/ws/v3/8ffe3d478cfe47f1a65978dfa14e7d9e', {});
+    const web3 = new Web3('https://ropsten.infura.io/v3/8ffe3d478cfe47f1a65978dfa14e7d9e', {});
     this.contract = new web3.eth.Contract(RegistryABI, '0x0cc82efef656d836bb27548297bee4eb0cb6559e');
 
     this.fromBlock = web3.utils.toHex(0);
