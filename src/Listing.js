@@ -27,7 +27,7 @@ export default class Listing extends React.Component {
 
     return <li>
       <img src={`https://twivatar.glitch.me/${handle}`} />
-      <div class="meta">
+      <div className="meta">
         <a href={`https://twitter.com/${handle}`}>@{handle}</a>
         <span className="date">{dateString}</span>
       </div>

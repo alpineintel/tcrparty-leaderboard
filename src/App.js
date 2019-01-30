@@ -10,7 +10,7 @@ class App extends Component {
           <ul>
             <li><a href="/">About</a></li>
             <li><a href="https://github.com/alpineintel/tcrpartybot">Code</a></li>
-            <li><a href="/leaderboard.html">Leaderboard</a></li>
+            <li><a href="https://leadboard.tcr.party">Leaderboard</a></li>
           </ul>
         </header>
         <article>
