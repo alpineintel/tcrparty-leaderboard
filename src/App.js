@@ -16,6 +16,10 @@ class App extends Component {
         <article>
           <CurrentMembers />
         </article>
+        <div className="spacer" />
+        <article className="tcr-info">
+          Sourcing data from TCRP Registry at <span className="code">0x0cc82efef656d836bb27548297bee4eb0cb6559e</span> (Ropsten network).
+        </article>
       </div>
     );
   }

@@ -5,6 +5,8 @@ body {
   font-weight: 300;
   -webkit-font-aliasing: antialiased;
   font-size: 16px;
+  padding: 0px;
+  margin: 0px;
 }
 
 a {
@@ -26,7 +28,12 @@ ul {
 
 .container {
   max-width: 960px;
-  margin: 20px auto;
+  min-height: 100vh;
+  margin: 0px auto;
+  padding: 20px 0px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -99,4 +106,17 @@ ul.members .meta {
     flex: 1;
     padding: 0px 10px;
     text-align: center;
+}
+
+.tcr-info {
+    color: #93999b;
+    font-size: 12px;
+}
+
+span.code {
+    font-family: Monospace;
+}
+
+.spacer {
+    flex: 1;
 }
