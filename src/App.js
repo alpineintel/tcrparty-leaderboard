@@ -8,7 +8,7 @@ class App extends Component {
         <header>
           <h1>🎉 TCR Party 🎉</h1>
           <ul>
-            <li><a href="/">About</a></li>
+            <li><a href="https://www.tcr.party">About</a></li>
             <li><a href="https://github.com/alpineintel/tcrpartybot">Code</a></li>
             <li><a href="https://leadboard.tcr.party">Leaderboard</a></li>
           </ul>
