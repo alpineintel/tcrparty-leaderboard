@@ -8,6 +8,9 @@ export default class CurrentMembers extends React.Component {
     super();
     this.state = {
       listings: [],
+      challenged: [],
+      whitelisted: [],
+      nominated: [],
       loading: true,
     };
   }
@@ -25,9 +28,9 @@ export default class CurrentMembers extends React.Component {
 
     this.contract.getPastEvents('_Application', {fromBlock: this.fromBlock, toBlock: 'latest'})
       .then(this.receiveApplicationEvents)
-      .then(this.sortListings)
       .then(this.findChallenges)
-      .then((state) => this.setState(state))
+      .then(this.sortListings)
+      .then((state) => this.setState({...state, loading: false}))
       .catch((e) => {
         console.log('Error finding messages', e);
       });
@@ -56,18 +59,7 @@ export default class CurrentMembers extends React.Component {
       .then(listings => listings.filter(l => parseInt(l.owner) !== 0))
   }
 
-  sortListings = (listings) => {
-    const whitelisted = listings.filter(listing => listing.whitelisted);
-    const now = + new Date();
-    const nominated = listings.filter((listing) => {
-      return listing.applicationExpiry > now && listing.challengeID === 0;
-    });
-    const challenged = listings.filter((listing) => listing.challengeID > 0);
-
-    return {listings, whitelisted, nominated, challenged};
-  }
-
-  findChallenges = ({listings, whitelisted, nominated, challenged}) => {
+  findChallenges = (listings) => {
     return this.contract.getPastEvents('_Challenge', {fromBlock: this.fromBlock, toBlock: 'latest'})
       .then((events) => {
         const challenges = events.reduce((obj, event) => {
@@ -81,19 +73,25 @@ export default class CurrentMembers extends React.Component {
           };
         }, {});
 
-        return {
-          listings,
-          whitelisted,
-          nominated,
-          challenged: challenged.map((listing) => {
-            return {
-              ...listing,
-              challenge: challenges[listing.challengeID],
-            };
-          }),
-          loading: false,
-        };
-      })
+        return listings.map((listing) => {
+          const challenge = challenges[listing.challengeID];
+          return {
+            ...listing,
+            challenge,
+          };
+        });
+      });
+  }
+
+  sortListings = (listings) => {
+    const whitelisted = listings.filter(listing => listing.whitelisted && listing.challengeID === 0);
+    const now = + new Date();
+    const nominated = listings.filter((listing) => {
+      return listing.applicationExpiry > now && listing.challengeID === 0;
+    });
+    const challenged = listings.filter((listing) => listing.challengeID > 0);
+
+    return {listings, whitelisted, nominated, challenged};
   }
 
   render() {
@@ -116,7 +114,7 @@ export default class CurrentMembers extends React.Component {
           )}
         </div>
         <div className="list">
-          <h2>Being challenged</h2>
+          <h2>In challenge</h2>
           {loading && (
             <p>Loading...</p>
           )}

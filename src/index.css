@@ -93,6 +93,14 @@ ul.members span.date {
     margin-left: 5px;
 }
 
+ul.members span.status {
+    color: #93999b;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
 ul.members .meta {
     display: flex;
     flex-direction: column;
