@@ -20,11 +20,11 @@ export default class Listing extends React.Component {
       if (listing.challenge.commitEndDate < now) {
         dateString = `Challenge finalized ${moment(listing.challenge.revealEndDate).fromNow()}`;
       } else {
-        dateString = `Challenge voting ends ${moment(listing.challenge.commitEndDate).fromNow()}`;
+        dateString = `Challenge vote ends ${moment(listing.challenge.commitEndDate).fromNow()}`;
         actions = (
           <Fragment>
-            Vote to
-            <a target="_blank" href={generateDM(`vote @${handle} keep`)}>keep</a> or
+            Vote to&nbsp;
+            <a target="_blank" href={generateDM(`vote @${handle} keep`)}>keep</a> or&nbsp;
             <a target="_blank" href={generateDM(`vote @${handle} kick`)}>kick</a>
           </Fragment>
         );
