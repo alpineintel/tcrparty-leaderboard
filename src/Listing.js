@@ -7,9 +7,10 @@ export default class Listing extends React.Component {
 
     const handle = listing.data.replace('@', '');
 
+    const now = + new Date();
     let dateString;
     let statusString;
-    if (listing.challengeID !== 0) {
+    if (listing.challenge && listing.challenge.revealEndDate > now) {
       const now = + new Date();
       if (listing.challenge.commitEndDate < now) {
         dateString = `Challenge finalized ${moment(listing.challenge.revealEndDate).fromNow()}`;

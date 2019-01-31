@@ -68,7 +68,7 @@ export default class CurrentMembers extends React.Component {
             [parseInt(event.returnValues.challengeID)]: {
               ...event.returnValues,
               commitEndDate: parseInt(event.returnValues.commitEndDate) * 1000,
-              appEndDate: parseInt(event.returnValues.revealEndDate) * 1000,
+              revealEndDate: parseInt(event.returnValues.revealEndDate) * 1000,
             }
           };
         }, {});
@@ -84,12 +84,15 @@ export default class CurrentMembers extends React.Component {
   }
 
   sortListings = (listings) => {
-    const whitelisted = listings.filter(listing => listing.whitelisted && listing.challengeID === 0);
     const now = + new Date();
+
+    const whitelisted = listings.filter(listing => {
+      return listing.whitelisted && (listing.challengeID === 0 || (listing.challenge && listing.challenge.revealEndDate < now));
+    });
     const nominated = listings.filter((listing) => {
       return listing.applicationExpiry > now && listing.challengeID === 0;
     });
-    const challenged = listings.filter((listing) => listing.challengeID > 0);
+    const challenged = listings.filter((listing) => listing.challenge && listing.challenge.revealEndDate > now);
 
     return {listings, whitelisted, nominated, challenged};
   }
