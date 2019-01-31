@@ -58,7 +58,7 @@ export default class Listing extends React.Component {
     return <li>
       <img src={`https://twivatar.glitch.me/${handle}`} />
       <div className="meta">
-        <a className="handle" href={`https://twitter.com/${handle}`}>@{handle}</a>
+        <a target="_blank" className="handle" href={`https://twitter.com/${handle}`}>@{handle}</a>
         {statusString && <span className="status">{statusString}</span>}
         <span className="date">{dateString}</span>
         {actions && <div className="actions">{actions}</div>}
