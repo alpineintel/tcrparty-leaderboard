@@ -18,7 +18,7 @@ class App extends Component {
         </article>
         <div className="spacer" />
         <article className="tcr-info">
-          Sourcing data from TCRP Registry at <span className="code">0x0cc82efef656d836bb27548297bee4eb0cb6559e</span> (Ropsten network).
+          Sourcing data from TCRP Registry at <span className="code">0x0ba217252e67ab3832fbfc6af9b0ab4132d6eb84</span> (Rinkeby network).
         </article>
       </div>
     );
