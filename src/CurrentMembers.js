@@ -16,13 +16,13 @@ export default class CurrentMembers extends React.Component {
   }
 
   componentDidMount() {
-    let url = 'https://ropsten.infura.io/v3/8ffe3d478cfe47f1a65978dfa14e7d9e'
+    let url = 'https://rinkeby.infura.io/v3/8ffe3d478cfe47f1a65978dfa14e7d9e'
     if (navigator.userAgent.indexOf("Firefox") != -1) {
-      url = 'wss://ropsten.infura.io/ws/v3/8ffe3d478cfe47f1a65978dfa14e7d9e';
+      url = 'wss://rinkeby.infura.io/ws/v3/8ffe3d478cfe47f1a65978dfa14e7d9e';
     }
 
     const web3 = new Web3(url, {});
-    this.contract = new web3.eth.Contract(RegistryABI, '0x0cc82efef656d836bb27548297bee4eb0cb6559e');
+    this.contract = new web3.eth.Contract(RegistryABI, '0x0ba217252e67ab3832fbfc6af9b0ab4132d6eb84');
 
     this.fromBlock = web3.utils.toHex(0);
 
@@ -63,6 +63,7 @@ export default class CurrentMembers extends React.Component {
     return this.contract.getPastEvents('_Challenge', {fromBlock: this.fromBlock, toBlock: 'latest'})
       .then((events) => {
         const challenges = events.reduce((obj, event) => {
+          console.log("Challenge: ", event);
           return {
             ...obj,
             [parseInt(event.returnValues.challengeID)]: {
