@@ -14,6 +14,15 @@ class App extends Component {
           </ul>
         </header>
         <article>
+          <p>
+            <b style={{color: 'red'}}>Status update:</b> Looks like the party got out of hand... TCR
+            Party is currently experiencing downtime while we work with
+            Twitter's support team to revive our API access. Keep an eye on&nbsp;
+            <a href="https://twitter.com/stevenleeg">@stevenleeg</a>'s timeline
+            for updates.
+          </p>
+        </article>
+        <article>
           <CurrentMembers />
         </article>
         <div className="spacer" />
